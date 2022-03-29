@@ -68,9 +68,15 @@ int zad2(){
                         }                       
                     }
                 }
-                if(!popsuta_linia && ){
+                bool popsuty_wrzozec = false;
+                for(int n = 0; n < nowy_wzorzec.length(); n++){
+                     if(nowy_wzorzec[n] != NULL){
+                        popsuty_wzorzec = true;
+                     }
+                }
+                
+                if(!popsuta_linia && !popsuty_wzorzec){
                     wynik++ ;
-
                 }
             }
         }
