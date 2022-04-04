@@ -87,9 +87,40 @@ int zad2(){
 }
 
 
+bool czyTeSame(string linia, string wzorzec, int x){
+    for(int j = x; j < wzorzec.length(); j--){
+
+    }
+}
 
 int zad3(){
+    fstream plik;
+    plik.open("wzorce.txt", ios::in);
     
+    int wynik = 0;
+    int nr_linii = 0;
+    string wzorzec, linia;
+
+    while(getline(plik, linia)){
+
+        if(nr_linii == 0){
+            wzorzec = linia;
+        }else{
+            for(int i = wzorzec.length(); i < linia.length() - wzorzec.length(); i++){
+                if( czyTeSame(linia, wzorzec, i) ){
+
+                }
+            }
+
+
+
+
+
+
+        }
+    }
+
+    return wynik;
 }
 
 int main(int argc, char const *argv[])
