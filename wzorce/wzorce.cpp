@@ -36,61 +36,65 @@ int zad1(){
         }
         nr_linii++ ; 
     }
-
-    return wynik;
-}
-
-int zad2(){
-    fstream plik;
-    plik.open("wzorce.txt", ios::in);
     
-    int wynik = 0;
-    int nr_linii = 0;
-    string wzorzec, linia;
-
-    while(getline(plik, linia)){
-        int ile_znakow = 0; 
-        string nowy_wzorzec;
-
-        if(nr_linii == 0){
-            wzorzec = linia;
-        }else{
-            for(int i = 0; i < linia.length(); i++){
-                bool popsuta_linia = false;
-                for(int j = 0; j < wzorzec.length(); j++){
-                    if(linia[i] == wzorzec[j]){
-                        if(linia[i] == nowy_wzorzec[j]){
-                            ile_znakow++;
-                            nowy_wzorzec[j] = NULL;
-                            popsuta_linia = false;
-                        }else{
-                            popsuta_linia = true;
-                        }                       
-                    }
-                }
-                bool popsuty_wrzozec = false;
-                for(int n = 0; n < nowy_wzorzec.length(); n++){
-                     if(nowy_wzorzec[n] != NULL){
-                        popsuty_wzorzec = true;
-                     }
-                }
-                
-                if(!popsuta_linia && !popsuty_wzorzec){
-                    wynik++ ;
-                }
-            }
-        }
-        nr_linii++ ; 
-    }
-
+    plik.close();
     return wynik;
 }
+
+// int zad2(){
+//     fstream plik;
+//     plik.open("wzorce.txt", ios::in);
+    
+//     int wynik = 0;
+//     int nr_linii = 0;
+//     string wzorzec, linia;
+
+//     while(getline(plik, linia)){
+//         int ile_znakow = 0; 
+//         string nowy_wzorzec;
+
+//         if(nr_linii == 0){
+//             wzorzec = linia;
+//         }else{
+//             for(int i = 0; i < linia.length(); i++){
+//                 bool popsuta_linia = false;
+//                 for(int j = 0; j < wzorzec.length(); j++){
+//                     if(linia[i] == wzorzec[j]){
+//                         if(linia[i] == nowy_wzorzec[j]){
+//                             ile_znakow++;
+//                             nowy_wzorzec[j] = NULL;
+//                             popsuta_linia = false;
+//                         }else{
+//                             popsuta_linia = true;
+//                         }                       
+//                     }
+//                 }
+//                 bool popsuty_wrzozec = false;
+//                 for(int n = 0; n < nowy_wzorzec.length(); n++){
+//                      if(nowy_wzorzec[n] != NULL){
+//                         popsuty_wzorzec = true;
+//                      }
+//                 }
+                
+//                 if(!popsuta_linia && !popsuty_wzorzec){
+//                     wynik++ ;
+//                 }
+//             }
+//         }
+//         nr_linii++ ; 
+//     }
+
+//     return wynik;
+// }
 
 
 bool czyTeSame(string linia, string wzorzec, int x){
-    for(int j = x; j < wzorzec.length(); j--){
-
+    for(int j = 0; j < wzorzec.length(); j++){
+        if(linia[x-j] != wzorzec[wzorzec.length() - j]){
+            return false;
+        }
     }
+    return true;
 }
 
 int zad3(){
@@ -108,18 +112,13 @@ int zad3(){
         }else{
             for(int i = wzorzec.length(); i < linia.length() - wzorzec.length(); i++){
                 if( czyTeSame(linia, wzorzec, i) ){
-
+                    wynik++;
                 }
             }
-
-
-
-
-
-
         }
     }
 
+    plik.close();
     return wynik;
 }
 
@@ -128,7 +127,7 @@ int main(int argc, char const *argv[])
  
     cout << "Zad1: " << zad1() << endl;
     // cout << "Zad2: " << zad2() << endl;
-
+    cout << "Zad3: " << zad3 << endl;
     
 
 
