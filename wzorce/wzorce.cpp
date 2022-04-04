@@ -45,7 +45,6 @@ bool zad2plsHelp(string linia, string wzorzec, string & nowy_wzorzec, int x){
     for(int i = 0; i < wzorzec.length(); i++){
         if(linia[x] == wzorzec[i]){
             nowy_wzorzec[i] = NULL;
-            cout << "działa" << endl; 
             return true;   
         }
         for(int j = i; j < nowy_wzorzec.length(); j++){
