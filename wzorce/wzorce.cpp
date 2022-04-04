@@ -41,7 +41,7 @@ int zad1(){
     return wynik;
 }
 
-bool zad2plsHelp(string linia, string nowy_wzorzec, int x){
+bool zad2plsHelp(string linia, string & nowy_wzorzec, int x){
 
 
 }
@@ -49,9 +49,11 @@ bool zad2plsHelp(string linia, string nowy_wzorzec, int x){
 bool czyPusty(string co){
     for(int i = 0; i < co.length(); i++){
         cout << "Is this even necesery?" << endl;
-        
-
+        if(co[i] != NULL){
+            return false;
+        }
     }
+    return false;
 }
 
 int zad2(){
@@ -63,17 +65,19 @@ int zad2(){
     string wzorzec, linia;
 
     while(getline(plik, linia)){
-        int ile_znakow = 0; 
+        int za_duzo = 0;
         string nowy_wzorzec;
 
         if(nr_linii == 0){
             wzorzec = linia;
         }else{            
             for(int i = 0; i < linia.length(); i++){
-
+                if(zad2plsHelp(linia, & wzorzec, i)){
+                    
+                }
 
             }
-            if(nowy_wzorzec == NULL){
+            if(czyPusty(nowy_wzorzec) && za_duzo == 0)
                 wynik++ ;
             }
 
