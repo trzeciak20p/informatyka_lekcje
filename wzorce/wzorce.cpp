@@ -45,11 +45,12 @@ bool zad2plsHelp(string linia, string wzorzec, string & nowy_wzorzec, int x){
     for(int i = 0; i < wzorzec.length(); i++){
         if(linia[x] == wzorzec[i]){
             nowy_wzorzec[i] = NULL;
+            cout << "działa" << endl; 
             return true;   
         }
         for(int j = i; j < nowy_wzorzec.length(); j++){
             if(linia[x] == nowy_wzorzec[j]){
-                nowy_wzorzec[j] == true;
+                nowy_wzorzec[j] == NULL;
             }else{
                 return false;
             }
@@ -57,16 +58,6 @@ bool zad2plsHelp(string linia, string wzorzec, string & nowy_wzorzec, int x){
     }
 
     return false; 
-}
-
-bool czyPusty(string co){
-    for(int i = 0; i < co.length(); i++){
-        cout << "Is this even necesery?" << endl;
-        if(co[i] != NULL){
-            return false;
-        }
-    }
-    return false;
 }
 
 int zad2(){
@@ -86,49 +77,16 @@ int zad2(){
         }else{            
             for(int i = 0; i < linia.length(); i++){
                 if(zad2plsHelp(linia, wzorzec, nowy_wzorzec, i)){
-
-                }
-                else{
-                    
+                    ile_znakow++ ;
                 }
             }
-            if(czyPusty(nowy_wzorzec) && ile_znakow == wzorzec.length())
+            if(ile_znakow == wzorzec.length()){
                 wynik++ ;
-            }
-
-
-
-
-
-
-            // for(int i = 0; i < linia.length(); i++){
-            //     bool popsuta_linia = false;
-            //     for(int j = 0; j < wzorzec.length(); j++){
-            //         if(linia[i] == wzorzec[j]){
-            //             if(linia[i] == nowy_wzorzec[j]){
-            //                 ile_znakow++;
-            //                 nowy_wzorzec[j] = NULL;
-            //                 popsuta_linia = false;
-            //             }else{
-            //                 popsuta_linia = true;
-            //             }                       
-            //         }
-            //     }
-            //     bool popsuty_wrzozec = false;
-            //     for(int n = 0; n < nowy_wzorzec.length(); n++){
-            //          if(nowy_wzorzec[n] != NULL){
-            //             popsuty_wzorzec = true;
-            //          }
-            //     }
-                
-            //     if(!popsuta_linia && !popsuty_wzorzec){
-            //         wynik++ ;
-            //     }
-            }
+            }          
         }
         nr_linii++ ; 
     }
-
+    plik.close();
     return wynik;
 }
 
@@ -171,7 +129,7 @@ int main(int argc, char const *argv[])
 {
  
     cout << "Zad1: " << zad1() << endl;
-    // cout << "Zad2: " << zad2() << endl;
+    cout << "Zad2: " << zad2() << endl;
     cout << "Zad3: " << zad3 << endl;
     
 
