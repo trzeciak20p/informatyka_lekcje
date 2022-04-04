@@ -79,8 +79,7 @@ int zad2(){
             for(int i = 0; i < linia.length(); i++){
                 if(zad2plsHelp(linia, wzorzec, nowy_wzorzec, i)){
                     ile_znakow++ ;
-                }
-                
+                }            
             }
             if(ile_znakow == wzorzec.length()){
                 wynik++ ;
