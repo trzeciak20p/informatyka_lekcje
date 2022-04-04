@@ -41,9 +41,22 @@ int zad1(){
     return wynik;
 }
 
-bool zad2plsHelp(string linia, string & nowy_wzorzec, int x){
+bool zad2plsHelp(string linia, string wzorzec, string & nowy_wzorzec, int x){
+    for(int i = 0; i < wzorzec.length(); i++){
+        if(linia[x] == wzorzec[i]){
+            nowy_wzorzec[i] = NULL;
+            return true;   
+        }
+        for(int j = i; j < nowy_wzorzec.length(); j++){
+            if(linia[x] == nowy_wzorzec[j]){
+                nowy_wzorzec[j] == true;
+            }else{
+                return false;
+            }
+        }
+    }
 
-
+    return false; 
 }
 
 bool czyPusty(string co){
@@ -65,19 +78,21 @@ int zad2(){
     string wzorzec, linia;
 
     while(getline(plik, linia)){
-        int za_duzo = 0;
+        int ile_znakow = 0;
         string nowy_wzorzec;
 
         if(nr_linii == 0){
             wzorzec = linia;
         }else{            
             for(int i = 0; i < linia.length(); i++){
-                if(zad2plsHelp(linia, & wzorzec, i)){
+                if(zad2plsHelp(linia, wzorzec, nowy_wzorzec, i)){
+
+                }
+                else{
                     
                 }
-
             }
-            if(czyPusty(nowy_wzorzec) && za_duzo == 0)
+            if(czyPusty(nowy_wzorzec) && ile_znakow == wzorzec.length())
                 wynik++ ;
             }
 
