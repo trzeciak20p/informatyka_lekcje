@@ -50,6 +50,7 @@ bool zad2plsHelp(string linia, string wzorzec, string & nowy_wzorzec, int x){
         for(int j = i; j < nowy_wzorzec.length(); j++){
             if(linia[x] == nowy_wzorzec[j]){
                 nowy_wzorzec[j] == NULL;
+                return true;
             }else{
                 return false;
             }
@@ -73,11 +74,13 @@ int zad2(){
 
         if(nr_linii == 0){
             wzorzec = linia;
-        }else{            
+        }else{        
+            nowy_wzorzec = wzorzec;    
             for(int i = 0; i < linia.length(); i++){
                 if(zad2plsHelp(linia, wzorzec, nowy_wzorzec, i)){
                     ile_znakow++ ;
                 }
+                
             }
             if(ile_znakow == wzorzec.length()){
                 wynik++ ;
