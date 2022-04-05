@@ -10,7 +10,7 @@ struct IP{
 
 bool czyLiczbyMaSame(string ip){
     for(int i = 0; i < ip.length(); i++){
-        if(ip[i] < 48 && ip[i] > 57 || ip[i] != '.'){        //sprawdza czy ma same cyfry lub kropke
+        if( (ip[i] < '0' && ip[i] > '9') || ip[i] != '.'){        //sprawdza czy ma same cyfry lub kropke
             return false;
         }
     }
