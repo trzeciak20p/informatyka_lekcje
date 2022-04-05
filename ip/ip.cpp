@@ -14,11 +14,12 @@ bool czyLiczbyMaSame(string ip){
             return false;
         }
     }
+    cout << "Git cyferki" << endl;
     return true;
 }
 
 bool czyIpZgodne(string ip, string maska){
-    if(!czyLiczbyMaSame){
+    if(!czyLiczbyMaSame(ip)){
         return false;
     }
 
@@ -26,16 +27,16 @@ bool czyIpZgodne(string ip, string maska){
     else return true;
 }
 
-IP wczytywanieIp(){
+void wczytywanieIp(){
     // IP yo;
     string ip, maska;
-    
+
     do{
         cout << "Podaj adres IP: ";
         cin >> ip;
         cout << "Podaj maskę: ";
         cin >> maska;
-    }while(!czyIpZgodne);
+    }while(!czyIpZgodne(ip, maska));
 
 
     // yo -> ip = ip;
@@ -49,7 +50,7 @@ IP wczytywanieIp(){
 
     
 
-    return yo;
+    return;
 }
 
 int main(int argc, char const *argv[])
