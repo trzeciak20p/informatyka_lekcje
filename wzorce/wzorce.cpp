@@ -120,6 +120,7 @@ int zad3(){
                 }
             }
         }
+        nr_linii++ ;
     }
 
     plik.close();
@@ -131,7 +132,7 @@ int main(int argc, char const *argv[])
  
     cout << "Zad1: " << zad1() << endl;
     cout << "Zad2: " << zad2() << endl;
-    cout << "Zad3: " << zad3 << endl;
+    cout << "Zad3: " << zad3() << endl;
     
 
 
