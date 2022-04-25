@@ -93,8 +93,10 @@ int zad2(){
 
 
 bool czyTeSame(string linia, string wzorzec, int x){
+    //cout << x;
     for(int j = 0; j < wzorzec.length(); j++){
-        if(linia[x-j] != wzorzec[wzorzec.length() - j]){
+        
+        if(linia[x - j] != wzorzec[wzorzec.length() - j]){
             return false;
         }
     }
@@ -113,10 +115,12 @@ int zad3(){
 
         if(nr_linii == 0){
             wzorzec = linia;
-        }else{
-            for(int i = wzorzec.length(); i < linia.length() - wzorzec.length(); i++){
-                if( czyTeSame(linia, wzorzec, i) ){
-                    wynik++;
+        }else{     
+            if(linia.length() >= wzorzec.length() ){
+                for(int i = wzorzec.length() - 1; i < linia.length(); i++){
+                    if( czyTeSame(linia, wzorzec, i) ){
+                        wynik++;
+                    }
                 }
             }
         }
