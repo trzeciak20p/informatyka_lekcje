@@ -40,8 +40,45 @@ bool czyLiczbyMaSame(IP x){     //works
 }
 
 bool naPoprawnoscBin(IP x){
-    
-    
+    int ktory_oktet = 0;
+    string oct = "";
+    for(int i = 0; i < x.ip.length(); i++){
+        if(x.ip[i] != '.'){
+            oct += x.ip[i];
+        }else{
+            for(int j = 0; j < oct.length(); j++){
+                switch (j){
+                case 0:
+                    if( oct[j] < '0' || oct[j] > '2'){
+                        cout << "Źle podana liczba w oktecie: " << ktory_oktet << endl;
+                        return false;
+                    }
+                    break;
+                case 1:
+                    if( oct[j] < '0' || oct[j] > '2'){
+                        cout << "Źle podana liczba w oktecie: " << ktory_oktet << endl;
+                        return false;
+                    }
+                case 2:
+                    if( oct[j] < '0' || oct[j] > '5'){
+                        cout << "Źle podana liczba w oktecie: " << ktory_oktet << endl;
+                        return false;
+                    }
+                default:
+                    return false; //profilaktycznie
+                }
+
+                zamiana na bin
+                ajpi.ip_bin[ktory_oktet] = oct;      //zamienić na &
+
+            }
+            
+            oct = "";
+            ktory_oktet++ ;
+        }
+    }
+
+    return true;
 }
 
 bool czySkladniaDobrze(IP x){       //works
