@@ -13,8 +13,8 @@ using namespace std;
 struct IP{
     string ip;
     string mask;
-    int ip_bin[4];
-    int mask_bin[4];
+    string ip_bin[4];
+    string mask_bin[4];
 };
 
 bool czyLiczbyMaSame(IP & x){     //works
@@ -40,16 +40,19 @@ bool czyLiczbyMaSame(IP & x){     //works
     return true;
 }
 
-int naBinarke(int dec){
-    int bin = 0, a = 1;
+string naBinarke(int dec){
+    string bin = 0; 
     int e;
     while (dec != 0) {
-        e = dec % 2;
-        bin = bin + (e * a);
-        dec = dec / 2;
-        a *= 10;
+        e = dec % 2;   
+        //bin += e;    
+        dec = dec / 2;  
     }
-
+    cout << "dzia2";
+    // while(bin.length() < 8){
+    //     bin = '0' + bin;
+    // }
+    cout << "dzia3";
     return bin;
 }
 
@@ -62,12 +65,10 @@ bool naPoprawnoscBin(IP & x){
         }else{
             oktet = stoi(oct);
             if(oktet > 255){
-                cout << "Jeden z oktetów za duży" << endl;
+                cout << "Jeden z oktetów w IP za duży" << endl;
                 return false;
             }
-    
             x.ip_bin[ktory_oktet] = naBinarke(oktet);
-            cout << "oktet: " << x.ip_bin[ktory_oktet] << "   " << ktory_oktet << endl;
             oct = "";
             ktory_oktet++ ;
             
@@ -79,17 +80,69 @@ bool naPoprawnoscBin(IP & x){
         return false;
     }   
     x.ip_bin[ktory_oktet] = naBinarke(oktet);
-    cout << "oktet: " << x.ip_bin[ktory_oktet] << "   " << ktory_oktet << endl;
     oct = "";
-    ktory_oktet++ ;
+    ktory_oktet = 0;
 
+    // MASKA
+    
+    for(int i = 0; i < x.mask.length(); i++){
+        if(x.mask[i] != '.'){
+            oct += x.mask[i];
+        }else{
+            oktet = stoi(oct);
+            if(oktet > 255){
+                cout << "Jeden z oktetow w masce za duzy" << endl;
+                return false;
+            }
 
+            x.mask_bin[ktory_oktet] = naBinarke(oktet);
+            oct = "";
+            ktory_oktet++ ;
+            
+        }
+    }
+
+    oktet = stoi(oct);
+    if(oktet > 255){
+        cout << "Jeden z oktetow za duzy" << endl;
+        return false;
+    }   
+    x.ip_bin[ktory_oktet] = naBinarke(oktet);
+    //czy maska zgodna
+
+    cout << "Maska binarnie: ";
+    for (int i = 0; i < 4; i++){
+        cout << x.ip_bin[i];
+    }
+    cout << endl;
+    bool git = false;
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < x.mask_bin[i].length(); j++){
+            if(x.mask_bin[i][j] == '0'){
+                git = true;
+            }else{
+                if(git){
+                    cout << "Zle podana maska" << endl;
+                    return false;
+                }
+            }
+        }
+    }
+    
+    
+
+    
     cout << "IP binarnie: ";
     for (int i = 0; i < 4; i++){
         cout << x.ip_bin[i];
     }
     cout << endl;
-    
+    cout << "Maska binarnie: ";
+    for (int i = 0; i < 4; i++){
+        cout << x.mask_bin[i];
+    }
+    cout << endl;
+
     return true;
 }
 
