@@ -13,8 +13,8 @@ using namespace std;
 struct IP{
     string ip;
     string mask;
-    string ip_bin[4];
-    string mask_bin[4];
+    int ip_bin[4];
+    int mask_bin[4];
 };
 
 bool czyLiczbyMaSame(IP & x){     //works
@@ -40,19 +40,16 @@ bool czyLiczbyMaSame(IP & x){     //works
     return true;
 }
 
-string naBinarke(int dec){
-    string bin = 0; 
-    int e;
+int naBinarke(int dec){
+    int bin = 0; 
+    int e, a = 1;
     while (dec != 0) {
-        e = dec % 2;   
-        //bin += e;    
-        dec = dec / 2;  
+        e = dec % 2;
+        bin = bin + (e * a);
+        dec = dec / 2;
+        a *= 10;
     }
-    cout << "dzia2";
-    // while(bin.length() < 8){
-    //     bin = '0' + bin;
-    // }
-    cout << "dzia3";
+
     return bin;
 }
 
@@ -68,6 +65,7 @@ bool naPoprawnoscBin(IP & x){
                 cout << "Jeden z oktetów w IP za duży" << endl;
                 return false;
             }
+    
             x.ip_bin[ktory_oktet] = naBinarke(oktet);
             oct = "";
             ktory_oktet++ ;
@@ -94,14 +92,13 @@ bool naPoprawnoscBin(IP & x){
                 cout << "Jeden z oktetow w masce za duzy" << endl;
                 return false;
             }
-
+    
             x.mask_bin[ktory_oktet] = naBinarke(oktet);
             oct = "";
             ktory_oktet++ ;
             
         }
     }
-
     oktet = stoi(oct);
     if(oktet > 255){
         cout << "Jeden z oktetow za duzy" << endl;
@@ -117,8 +114,9 @@ bool naPoprawnoscBin(IP & x){
     cout << endl;
     bool git = false;
     for(int i = 0; i < 4; i++){
-        for(int j = 0; j < x.mask_bin[i].length(); j++){
-            if(x.mask_bin[i][j] == '0'){
+        string oct2 = to_string(x.ip_bin[i]);
+        for(int j = 0; j < oct2.length(); j++){
+            if(oct2[j] == '0'){
                 git = true;
             }else{
                 if(git){
@@ -139,7 +137,7 @@ bool naPoprawnoscBin(IP & x){
     cout << endl;
     cout << "Maska binarnie: ";
     for (int i = 0; i < 4; i++){
-        cout << x.mask_bin[i];
+        cout << x.ip_bin[i];
     }
     cout << endl;
 
