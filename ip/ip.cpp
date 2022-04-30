@@ -13,11 +13,11 @@ using namespace std;
 struct IP{
     string ip;
     string mask;
-    int IP_bin[4];
+    int ip_bin[4];
     int mask_bin[4];
 };
 
-bool czyLiczbyMaSame(IP x){     //works
+bool czyLiczbyMaSame(IP & x){     //works
     for(int i = 0; i < x.ip.length(); i++){
         if( x.ip[i] < '0' || x.ip[i] > '9'){        //sprawdza czy ma same cyfry lub kropke
             if(x.ip[i] != '.'){
@@ -40,33 +40,60 @@ bool czyLiczbyMaSame(IP x){     //works
     return true;
 }
 
-bool naPoprawnoscBin(IP x){
-    int ktory_oktet = 0;
+int naBinarke(int dec){
+    int bin = 0, a = 1;
+    int e;
+    while (dec != 0) {
+        e = dec % 2;
+        bin = bin + (e * a);
+        dec = dec / 2;
+        a *= 10;
+    }
+
+    return bin;
+}
+
+bool naPoprawnoscBin(IP & x){
+    int ktory_oktet = 0, oktet;
     string oct = "";
     for(int i = 0; i < x.ip.length(); i++){
         if(x.ip[i] != '.'){
             oct += x.ip[i];
         }else{
-            int oktet = stoi(oct);
+            oktet = stoi(oct);
             if(oktet > 255){
                 cout << "Jeden z oktetów za duży" << endl;
                 return false;
             }
-
-                
-                //    ajpi.ip_bin[ktory_oktet] = oct;      //zamienić na &
-
-            
-            
+    
+            x.ip_bin[ktory_oktet] = naBinarke(oktet);
+            cout << "oktet: " << x.ip_bin[ktory_oktet] << "   " << ktory_oktet << endl;
             oct = "";
             ktory_oktet++ ;
+            
         }
     }
+    oktet = stoi(oct);
+    if(oktet > 255){
+        cout << "Jeden z oktetów za duży" << endl;
+        return false;
+    }   
+    x.ip_bin[ktory_oktet] = naBinarke(oktet);
+    cout << "oktet: " << x.ip_bin[ktory_oktet] << "   " << ktory_oktet << endl;
+    oct = "";
+    ktory_oktet++ ;
 
+
+    cout << "IP binarnie: ";
+    for (int i = 0; i < 4; i++){
+        cout << x.ip_bin[i];
+    }
+    cout << endl;
+    
     return true;
 }
 
-bool czySkladniaDobrze(IP x){       //works
+bool czySkladniaDobrze(IP & x){       //works
     int ae = 0;             //ilośc numerków między kropkami
     int ile_kropek = 0;
     for(int i = 0; i < x.ip.length(); i++){
@@ -125,7 +152,7 @@ bool czySkladniaDobrze(IP x){       //works
     return true;
 }
 
-bool czyIpZgodne(IP x){
+bool czyIpZgodne(IP & x){
     if(!czyLiczbyMaSame(x)){
         return false;
     }
