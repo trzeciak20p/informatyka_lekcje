@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -46,32 +47,16 @@ bool naPoprawnoscBin(IP x){
         if(x.ip[i] != '.'){
             oct += x.ip[i];
         }else{
-            for(int j = 0; j < oct.length(); j++){
-                switch (j){
-                case 0:
-                    if( oct[j] < '0' || oct[j] > '2'){
-                        cout << "Źle podana liczba w oktecie: " << ktory_oktet << endl;
-                        return false;
-                    }
-                    break;
-                case 1:
-                    if( oct[j] < '0' || oct[j] > '2'){
-                        cout << "Źle podana liczba w oktecie: " << ktory_oktet << endl;
-                        return false;
-                    }
-                case 2:
-                    if( oct[j] < '0' || oct[j] > '5'){
-                        cout << "Źle podana liczba w oktecie: " << ktory_oktet << endl;
-                        return false;
-                    }
-                default:
-                    return false; //profilaktycznie
-                }
-
-                zamiana na bin
-                ajpi.ip_bin[ktory_oktet] = oct;      //zamienić na &
-
+            int oktet = stoi(oct);
+            if(oktet > 255){
+                cout << "Jeden z oktetów za duży" << endl;
+                return false;
             }
+
+                
+                //    ajpi.ip_bin[ktory_oktet] = oct;      //zamienić na &
+
+            
             
             oct = "";
             ktory_oktet++ ;
@@ -136,7 +121,7 @@ bool czySkladniaDobrze(IP x){       //works
         return false;
     }
 
-    cout << "Git składnia";
+    cout << "Git składnia" << endl;
     return true;
 }
 
