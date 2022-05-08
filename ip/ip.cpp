@@ -18,6 +18,7 @@ struct IP{
     string adress;
     char ip_class;
     int hosts;
+    int subnetsCount;
 };
 
 
@@ -98,7 +99,23 @@ void ktoraKlasa(IP & x){
     return;
 }
 
-bool naPoprawnoscBin(IP & x){
+void iloscPodsieci(IP & x, int k){
+    int n;
+    if(x.ip_class == 'a'){
+        n = 8;
+    }else if(x.ip_class == 'b'){
+        n = 16;
+    }else if(x.ip_class == 'c'){
+        n = 24;
+    }else{
+        x.subnetsCount = NULL;
+        return;
+    }
+    x.subnetsCount = n - k;
+    return;
+}
+
+bool informacjeOIP(IP & x){
     int ktory_oktet = 0, oktet;
     string oct = "";
     for(int i = 0; i < x.ip.length(); i++){
@@ -219,11 +236,15 @@ bool naPoprawnoscBin(IP & x){
         ae++ ;
     }
     cout << "Adres strony: " << x.adress << endl; 
-    
 
     //klasa
     ktoraKlasa(x);
     cout << "Klasa: " << x.ip_class << endl;
+    
+    //podsieci
+    iloscPodsieci(x, ile1);
+    cout << "Ilość podsieci: " << x.subnetsCount;
+    
 
     return true;
 }
@@ -294,7 +315,7 @@ bool czyIpZgodne(IP & x){
     if(!czySkladniaDobrze(x)){
         return false;
     }
-    if(!naPoprawnoscBin(x)){
+    if(!informacjeOIP(x)){
         return false;
     }
     return true;
@@ -312,9 +333,6 @@ void wczytywanieIp(){
         ajpi.ip = ip;
         ajpi.mask = maska;
     }while(!czyIpZgodne(ajpi));
-    
-
-    //podsieci
 
     return;
 }
