@@ -7,12 +7,24 @@ class Student_public{
     public string $klasa;
     public int $nr_w_dzienniku;
 
-    public function _constructor(){
-
+    public function _constructor(string $imie, string $nazwisko, string $klasa, string $nr_w_dzienniku){
+        $this -> imie = $imie;
+        $this -> nazwisko = $nazwisko;
+        $this -> klasa = $klasa;
+        $this -> nr_w_dzienniku = $nr_w_dzienniku;
     }
 }
 
 $student = new Student("Jan", "Kowalski", "2I", 37)
+$student2 = new Student();
+$student2 -> imie = "Jacek";
+$student2 -> nazwisko = "Placek";
+$student2 -> nazwisko = "Kowal";
+$student2 -> klasa = "2B";
+
+echo "$student -> imie $student -> nazwisko"; 
+
+
 
 
 class Student_php8{
