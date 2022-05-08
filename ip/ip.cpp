@@ -4,17 +4,18 @@
 using namespace std;
 
 // Wczytać adres IP i maskę 
-// Maska Czy 4 oktety czy od zera do 255 i czy ciągłość same jedynki potem same zera 
-// 1. Wyświetlić adres IP i maskę w binarce (każdy oktet na bin i połączyć)
+// Maska Czy 4 oktety czy od zera do 255 i czy ciągłość same jedynki potem same zera        DONE
+// 1. Wyświetlić adres IP i maskę w binarce (każdy oktet na bin i połączyć)     DONE
 // 2. Wyświetlić klasę IP i ilość podejść dla klasy maski (eee maska jedynki -  IP jedynki cośtam)
 // 3. Wyświetlić adres sieci, ilość hostów w podsieci
-// 4. sprawdzić poprawność maski oraz IP ()
+// 4. sprawdzić poprawność maski oraz IP ()    DONE
 
 struct IP{
     string ip;
     string mask;
     string ip_bin[4];
     string mask_bin[4];
+    int hosts;
 };
 
 bool czyLiczbyMaSame(IP & x){     //works
@@ -107,8 +108,8 @@ bool naPoprawnoscBin(IP & x){
     }   
     x.mask_bin[ktory_oktet] = naBinarke(oktet);
 
-    //czy maska zgodna
-    cout << endl;
+    //czy maska zgodna i hosty
+    int ile1 = 0;
     bool git = false;
     for(int i = 0; i < 4; i++){
         string oct2 = x.mask_bin[i];
@@ -120,6 +121,7 @@ bool naPoprawnoscBin(IP & x){
                     cout << "Zle podana maska" << endl;
                     return false;
                 }
+                ile1++ ;
             }
         }
     }
@@ -135,6 +137,17 @@ bool naPoprawnoscBin(IP & x){
         cout << x.mask_bin[i];
     }
     cout << endl;
+    //hosty
+    ile1 = 32 - ile1;
+    int hosty = 1;
+    for(int i = 0; i < ile1; i++){
+        hosty *= 2;
+    }
+    x.hosts = hosty - 2;
+    if(x.hosts < 0){
+        x.hosts = 0;
+    }
+    cout << "Ilosc hostow: " << x.hosts << endl;
 
     return true;
 }
@@ -224,14 +237,11 @@ void wczytywanieIp(){
         ajpi.mask = maska;
     }while(!czyIpZgodne(ajpi));
 
-
-    for(int i = 0; i < ip.length(); i++ ){
-
-
-    }
+    //hosty
+    
     
 
-    
+    //podsieci
 
     return;
 }
