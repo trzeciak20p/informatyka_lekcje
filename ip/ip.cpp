@@ -59,19 +59,7 @@ string naBinarke(int dec){      //dziaa
     return bin;
 }
 
-string naHex(string bin){
-    int hex = 0;
-    int a = 1;
-    for(int i = bin.length() - 1; i >= 0; i--){
-        hex += (bin[i] - 48) * a;
-        a *= 2;
-        
-    }
-    
-    return to_string(hex);
-}
-
-int naHexAleInt(string bin){
+int naHex(string bin){
     int hex = 0;
     int a = 1;
     for(int i = bin.length() - 1; i >= 0; i--){
@@ -83,7 +71,7 @@ int naHexAleInt(string bin){
 }
 
 void ktoraKlasa(IP & x){
-    int b = naHexAleInt(x.ip_bin[0]);
+    int b = naHex(x.ip_bin[0]);
     cout << "BBBB: " << b << endl;
     if(b < 128){
         x.ip_class = 'a';
@@ -108,7 +96,7 @@ void iloscPodsieci(IP & x, int k){
     }else if(x.ip_class == 'c'){
         n = 24;
     }else{
-        x.subnetsCount = NULL;
+        x.subnetsCount = 0;
         return;
     }
     x.subnetsCount = n - k;
@@ -220,7 +208,7 @@ bool informacjeOIP(IP & x){
             while(oct.length() < 8){
                 oct = oct + "0";
             }
-            x.adress += naHex(oct);
+            x.adress += to_string(naHex(oct));
             if(ktory_oktet != 3){
                 x.adress += ".";
             }
