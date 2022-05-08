@@ -15,6 +15,7 @@ struct IP{
     string mask;
     string ip_bin[4];
     string mask_bin[4];
+    string adress;
     int hosts;
 };
 
@@ -53,6 +54,18 @@ string naBinarke(int dec){      //dziaa
         bin = "0" + bin;
     }
     return bin;
+}
+
+string naHex(string bin){
+    int hex = 0;
+    int a = 1;
+    for(int i = bin.length() - 1; i >= 0; i--){
+        hex += (bin[i] - 48) * a;
+        a *= 2;
+        
+    }
+    
+    return to_string(hex);
 }
 
 bool naPoprawnoscBin(IP & x){
@@ -137,6 +150,7 @@ bool naPoprawnoscBin(IP & x){
         cout << x.mask_bin[i];
     }
     cout << endl;
+
     //hosty
     ile1 = 32 - ile1;
     int hosty = 1;
@@ -148,6 +162,41 @@ bool naPoprawnoscBin(IP & x){
         x.hosts = 0;
     }
     cout << "Ilosc hostow: " << x.hosts << endl;
+
+    //adres
+    int ae = 0;
+    int i = 0;
+    oct = "";
+    ktory_oktet = 0;
+    while(ae < 33){
+        cout << ktory_oktet << ", i: " << i << endl;
+        if(i == 8){
+            while(oct.length() < 8){
+                oct = oct + "0";
+            }
+            x.adress += naHex(oct);
+            if(ktory_oktet != 3){
+                x.adress += ".";
+            }
+            ktory_oktet++ ;
+            oct = "";
+            i = 0;
+        }
+        if(ae < 32 - ile1 - 1){
+            oct += x.ip_bin[ktory_oktet][i];
+        }
+        i++ ;
+        
+        ae++ ;
+    }
+
+
+    //if oktet i i
+
+    cout << "Adres strony: " << x.adress << endl; 
+    
+
+
 
     return true;
 }
@@ -236,11 +285,7 @@ void wczytywanieIp(){
         ajpi.ip = ip;
         ajpi.mask = maska;
     }while(!czyIpZgodne(ajpi));
-
-    //hosty
     
-    
-
     //podsieci
 
     return;

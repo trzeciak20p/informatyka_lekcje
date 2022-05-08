@@ -17,9 +17,20 @@ string naBinarke(int dec){
     }
     return bin;
 }
+int naHex(string bin){
+    int hex = 0;
+    int a = 1;
+    for(int i = bin.length() - 1; i >= 0; i--){
+        hex += (bin[i] - 48) * a;
+        a *= 2;
+        
+    }
+
+    return hex;
+}
 
 int main(int argc, char const *argv[])
 {
-    cout << naBinarke(255);
+    cout << naHex("1000101") << endl;
     return 0;
 }
