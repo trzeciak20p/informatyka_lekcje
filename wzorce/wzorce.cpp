@@ -137,7 +137,5 @@ int main(int argc, char const *argv[])
     cout << "Zad2: " << zad2() << endl;
     cout << "Zad3: " << zad3() << endl;
 
-
-   
     return 0;
 }

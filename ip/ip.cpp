@@ -13,8 +13,8 @@ using namespace std;
 struct IP{
     string ip;
     string mask;
-    int ip_bin[4];
-    int mask_bin[4];
+    string ip_bin[4];
+    string mask_bin[4];
 };
 
 bool czyLiczbyMaSame(IP & x){     //works
@@ -40,16 +40,18 @@ bool czyLiczbyMaSame(IP & x){     //works
     return true;
 }
 
-int naBinarke(int dec){
-    int bin = 0; 
-    int e, a = 1;
+string naBinarke(int dec){
+    string bin = ""; 
+    int e;
     while (dec != 0) {
         e = dec % 2;
-        bin = bin + (e * a);
+        bin = to_string(e) + bin  ;
         dec = dec / 2;
-        a *= 10;
     }
-
+    while(bin.length() < 8){
+        bin = "0" + bin;
+    }
+    cout << bin << endl;
     return bin;
 }
 
@@ -109,12 +111,12 @@ bool naPoprawnoscBin(IP & x){
 
     cout << "Maska binarnie: ";
     for (int i = 0; i < 4; i++){
-        cout << x.ip_bin[i];
+        cout << x.maska_bin[i];
     }
     cout << endl;
     bool git = false;
     for(int i = 0; i < 4; i++){
-        string oct2 = to_string(x.ip_bin[i]);
+        string oct2 = x.ip_bin[i];
         for(int j = 0; j < oct2.length(); j++){
             if(oct2[j] == '0'){
                 git = true;
@@ -213,8 +215,6 @@ bool czyIpZgodne(IP & x){
     if(!naPoprawnoscBin(x)){
         return false;
     }
-
-
     return true;
 }
 
