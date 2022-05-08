@@ -40,7 +40,7 @@ bool czyLiczbyMaSame(IP & x){     //works
     return true;
 }
 
-string naBinarke(int dec){
+string naBinarke(int dec){      //dziaa
     string bin = ""; 
     int e;
     while (dec != 0) {
@@ -51,7 +51,6 @@ string naBinarke(int dec){
     while(bin.length() < 8){
         bin = "0" + bin;
     }
-    cout << bin << endl;
     return bin;
 }
 
@@ -106,17 +105,13 @@ bool naPoprawnoscBin(IP & x){
         cout << "Jeden z oktetow za duzy" << endl;
         return false;
     }   
-    x.ip_bin[ktory_oktet] = naBinarke(oktet);
-    //czy maska zgodna
+    x.mask_bin[ktory_oktet] = naBinarke(oktet);
 
-    cout << "Maska binarnie: ";
-    for (int i = 0; i < 4; i++){
-        cout << x.maska_bin[i];
-    }
+    //czy maska zgodna
     cout << endl;
     bool git = false;
     for(int i = 0; i < 4; i++){
-        string oct2 = x.ip_bin[i];
+        string oct2 = x.mask_bin[i];
         for(int j = 0; j < oct2.length(); j++){
             if(oct2[j] == '0'){
                 git = true;
@@ -129,9 +124,7 @@ bool naPoprawnoscBin(IP & x){
         }
     }
     
-    
-
-    
+    //wyświetlanie
     cout << "IP binarnie: ";
     for (int i = 0; i < 4; i++){
         cout << x.ip_bin[i];
@@ -139,7 +132,7 @@ bool naPoprawnoscBin(IP & x){
     cout << endl;
     cout << "Maska binarnie: ";
     for (int i = 0; i < 4; i++){
-        cout << x.ip_bin[i];
+        cout << x.mask_bin[i];
     }
     cout << endl;
 
