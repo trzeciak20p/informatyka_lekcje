@@ -6,7 +6,7 @@ using namespace std;
 // Wczytać adres IP i maskę 
 // Maska Czy 4 oktety czy od zera do 255 i czy ciągłość same jedynki potem same zera        DONE
 // 1. Wyświetlić adres IP i maskę w binarce (każdy oktet na bin i połączyć)     DONE
-// 2. Wyświetlić klasę IP i ilość podejść dla klasy maski (eee maska jedynki -  IP jedynki cośtam)
+// 2. Wyświetlić klasę IP i ilość podsieci dla klasy maski (eee maska jedynki -  IP jedynki cośtam)
 // 3. Wyświetlić adres sieci, ilość hostów w podsieci
 // 4. sprawdzić poprawność maski oraz IP ()    DONE
 
@@ -76,14 +76,14 @@ int naHexAleInt(string bin){
     for(int i = bin.length() - 1; i >= 0; i--){
         hex += (bin[i] - 48) * a;
         a *= 2;
-        
     }
     
     return hex;
 }
 
-void ktoraKlasa(IP x){
+void ktoraKlasa(IP & x){
     int b = naHexAleInt(x.ip_bin[0]);
+    cout << "BBBB: " << b << endl;
     if(b < 128){
         x.ip_class = 'a';
     }else if(b < 192){
@@ -199,7 +199,6 @@ bool naPoprawnoscBin(IP & x){
     oct = "";
     ktory_oktet = 0;
     while(ae < 33){
-        cout << ktory_oktet << ", i: " << i << endl;
         if(i == 8){
             while(oct.length() < 8){
                 oct = oct + "0";
@@ -221,6 +220,11 @@ bool naPoprawnoscBin(IP & x){
     }
     cout << "Adres strony: " << x.adress << endl; 
     
+
+    //klasa
+    ktoraKlasa(x);
+    cout << "Klasa: " << x.ip_class << endl;
+
     return true;
 }
 
@@ -309,6 +313,7 @@ void wczytywanieIp(){
         ajpi.mask = maska;
     }while(!czyIpZgodne(ajpi));
     
+
     //podsieci
 
     return;
