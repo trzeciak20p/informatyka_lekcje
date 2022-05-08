@@ -5,6 +5,7 @@
         "xiosbase": "cpp",
         "xlocale": "cpp",
         "ios": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "iosfwd": "cpp"
     }
 }

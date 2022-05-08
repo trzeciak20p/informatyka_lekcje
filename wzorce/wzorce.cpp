@@ -92,11 +92,10 @@ int zad2(){
 }
 
 
-bool czyTeSame(string linia, string wzorzec, int x){
+bool czyTeSame(string linia, string wzorzec, int i){
     //cout << x;
-    for(int j = 0; j < wzorzec.length(); j++){
-        
-        if(linia[x - j] != wzorzec[wzorzec.length() - j]){
+    for(int j = 0; j < wzorzec.length() - 1; j++){      
+        if(linia[i - j] != wzorzec[wzorzec.length() - j - 1]){
             return false;
         }
     }
@@ -117,7 +116,7 @@ int zad3(){
             wzorzec = linia;
         }else{     
             if(linia.length() >= wzorzec.length() ){
-                for(int i = wzorzec.length() - 1; i < linia.length(); i++){
+                for(int i = wzorzec.length() - 1; i < linia.length() - 1; i++){
                     if( czyTeSame(linia, wzorzec, i) ){
                         wynik++;
                     }
@@ -137,7 +136,6 @@ int main(int argc, char const *argv[])
     cout << "Zad1: " << zad1() << endl;
     cout << "Zad2: " << zad2() << endl;
     cout << "Zad3: " << zad3() << endl;
-    
 
 
    
