@@ -15,16 +15,14 @@ class Student_public{
     }
 }
 
-$student = new Student("Jan", "Kowalski", "2I", 37)
-$student2 = new Student();
+$student = new Student_public("Jan", "Kowalski", "2I", 37)
+$student2 = new Student_public();
 $student2 -> imie = "Jacek";
 $student2 -> nazwisko = "Placek";
 $student2 -> nazwisko = "Kowal";
 $student2 -> klasa = "2B";
 
 echo "$student -> imie $student -> nazwisko"; 
-
-
 
 
 class Student_php8{
@@ -36,6 +34,11 @@ class Student_php8{
     ) {}
 }
 
+$student3 = new Student_php8("Marcin", "Kowalski", "3A", 45)
+$student3 -> imie = "Zenek";
+echo "$student -> imie $student -> nazwisko klasa: $student3 -> klasa"; 
+
+
 
 class Student_private{
 
@@ -43,6 +46,13 @@ class Student_private{
     private string $nazwisko;
     private string $klasa;
     private int $nr_w_dzienniku;
+
+    public function _constructor(string $imie, string $nazwisko, string $klasa, string $nr_w_dzienniku){
+        $this -> imie = $imie;
+        $this -> nazwisko = $nazwisko;
+        $this -> klasa = $klasa;
+        $this -> nr_w_dzienniku = $nr_w_dzienniku;
+    }
 
     public function setAll(string $imie, string $nazwisko, string $klasa, string $nr_w_dzienniku){
         $this -> imie = $imie;
