@@ -64,6 +64,22 @@ class Student_private{
         echo "Imie: $this -> imie Nazwisko: $this -> nazwisko Klasa: $this -> klasa Numer w dzienniku: $this -> nr_w_dzienniku: "
     }
 
+    public function setName(string $imie){
+        $this -> imie = $imie;
+    }
+    public function setSurename(string $nazwisko){
+        $this -> nazwisko = $nazwisko;
+    }
+    public function setClass(string $klasa){
+        $this -> klasa = $klasa;
+    }
+    public function setNumber(string $nr_w_dzienniku){
+        $this -> nr_w_dzienniku = $nr_w_dzienniku;
+    }
+
+
+
+
 }
 
 
