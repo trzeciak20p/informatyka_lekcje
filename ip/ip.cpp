@@ -16,8 +16,10 @@ struct IP{
     string ip_bin[4];
     string mask_bin[4];
     string adress;
+    char ip_class;
     int hosts;
 };
+
 
 bool czyLiczbyMaSame(IP & x){     //works
     for(int i = 0; i < x.ip.length(); i++){
@@ -66,6 +68,34 @@ string naHex(string bin){
     }
     
     return to_string(hex);
+}
+
+int naHexAleInt(string bin){
+    int hex = 0;
+    int a = 1;
+    for(int i = bin.length() - 1; i >= 0; i--){
+        hex += (bin[i] - 48) * a;
+        a *= 2;
+        
+    }
+    
+    return hex;
+}
+
+void ktoraKlasa(IP x){
+    int b = naHexAleInt(x.ip_bin[0]);
+    if(b < 128){
+        x.ip_class = 'a';
+    }else if(b < 192){
+        x.ip_class = 'b';
+    }else if(b < 224){
+        x.ip_class = 'c';
+    }else if(b < 239){
+        x.ip_class = 'd';
+    }else{
+        x.ip_class = 'e';
+    }
+    return;
 }
 
 bool naPoprawnoscBin(IP & x){
@@ -189,15 +219,8 @@ bool naPoprawnoscBin(IP & x){
         
         ae++ ;
     }
-
-
-    //if oktet i i
-
     cout << "Adres strony: " << x.adress << endl; 
     
-
-
-
     return true;
 }
 
