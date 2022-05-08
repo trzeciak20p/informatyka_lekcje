@@ -15,7 +15,7 @@ class Student_public{
     }
 }
 
-$student = new Student_public("Jan", "Kowalski", "2I", 37)
+$student = new Student_public("Jan", "Kowalski", "2I", 37);
 $student2 = new Student_public();
 $student2 -> imie = "Jacek";
 $student2 -> nazwisko = "Placek";
@@ -77,10 +77,27 @@ class Student_private{
         $this -> nr_w_dzienniku = $nr_w_dzienniku;
     }
 
-
-
+    public function getName(){
+        return $this -> imie;
+    }
+    public function getSurename(){
+        return $this -> nazwisko;
+    }
+    public function getClass(){
+        return $this -> klasa;
+    }
+    public function getNumber(){
+        return $this -> nr_w_dzienniku;
+    }
 
 }
+
+$student4 = new Student_private();
+$student4 -> setAll("Jan", "Kowalski", "2I", 37);
+$student4 -> displayAll();
+$student4 -> setNumber(105);
+$student4 -> getNumber();
+
 
 
 ?>
