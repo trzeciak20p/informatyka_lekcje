@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -40,8 +41,6 @@ bool czyLiczbyMaSame(IP & x){     //works
             }
         }
     }
-
-    cout << "Git cyferki i kropki" << endl;
     return true;
 }
 
@@ -72,7 +71,6 @@ int naHex(string bin){
 
 void ktoraKlasa(IP & x){
     int b = naHex(x.ip_bin[0]);
-    cout << "BBBB: " << b << endl;
     if(b < 128){
         x.ip_class = 'a';
     }else if(b < 192){
@@ -99,7 +97,7 @@ void iloscPodsieci(IP & x, int k){
         x.subnetsCount = 0;
         return;
     }
-    x.subnetsCount = n - k;
+    x.subnetsCount = pow(2, k - n);
     return;
 }
 
@@ -230,7 +228,7 @@ bool informacjeOIP(IP & x){
     cout << "Klasa: " << x.ip_class << endl;
     
     //podsieci
-    iloscPodsieci(x, ile1);
+    iloscPodsieci(x, (32 - ile1));
     cout << "Ilość podsieci: " << x.subnetsCount;
     
 
@@ -291,8 +289,6 @@ bool czySkladniaDobrze(IP & x){       //works
         cout << "Źle składnia" << endl;
         return false;
     }
-
-    cout << "Git składnia" << endl;
     return true;
 }
 
